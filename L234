@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Haven Lodge | Luxury Accommodation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d4af37;
+            --primary-dark: #b8941f;
+            --secondary: #0a0a0f;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f5f5f5;
+            --gray: #2a2a2a;
+            --gray-light: #3a3a3a;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px var(--shadow);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background-color: rgba(10, 10, 15, 0.98);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--primary-dark);
+        }
+
+        .logo span {
+            color: var(--light);
+            font-weight: 300;
+            margin-left: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .book-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--darker);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .book-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1002;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, transparent 10%, rgba(0, 0, 0, 0.9) 70%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            opacity: 0.5;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #ccc;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--darker);
+            padding: 18px 45px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .cta-btn:hover::after {
+            left: 100%;
+        }
+
+        /* Rooms Section */
+        .rooms {
+            padding: 100px 0;
+            background-color: var(--darker);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #aaa;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .room-card {
+            background-color: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .room-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .room-img {
+            height: 240px;
+            background-color: #111;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(18, 18, 18, 0.9), transparent);
+        }
+
+        .room-content {
+            padding: 25px;
+            position: relative;
+        }
+
+        .room-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .room-title h3 {
+            font-size: 22px;
+            color: var(--light);
+        }
+
+        .room-price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .room-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .room-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .room-features i {
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 14px;
+        }
+
+        .room-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--darker);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .room-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .room-btn:hover::before {
+            width: 100%;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--gray);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        /* WhatsApp Section */
+        .whatsapp-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.1) 0%, transparent 70%);
+        }
+
+        .whatsapp-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .whatsapp-icon {
+            font-size: 80px;
+            color: #25D366;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .whatsapp-section h3 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-section p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            color: #ccc;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--gray);
+            border-radius: 50%;
+            color: var(--light);
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 15px;
+            color: #888;
+        }
+
+        /* Room-specific images */
+        .room-1 { background-image: url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); }
+        .room-2 { background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); }
+        .room-3 { background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1758&q=80'); }
+        .room-4 { background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1674&q=80'); }
+        .room-5 { background-image: url('https://images.unsplash.com/photo-1564078516393-cfcaef56c4a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); }
+        .room-6 { background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80'); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--gray);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .modal h3 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--darker);
+            border: none;
+            padding: 18px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .rooms-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--darker);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .whatsapp-section h3 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 90vh;
+                background-attachment: scroll;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .rooms-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            
+            .modal-content {
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .cta-btn, .whatsapp-btn {
+                padding: 15px 35px;
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .room-content {
+                padding: 20px;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Elite<span>Haven</span></a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#rooms">Rooms</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="book-btn" id="openBookingModal">Book Now</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Luxury <span>Redefined</span> at Elite Haven Lodge</h1>
+                <p>Discover unparalleled comfort and sophistication in our premium accommodations, where every detail is crafted for the discerning traveler seeking an exceptional retreat.</p>
+                <a href="#rooms" class="cta-btn">Explore Luxury Rooms</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms" id="rooms">
+        <div class="container">
+            <div class="section-title">
+                <h2>Luxury Accommodations</h2>
+                <p>Experience our premium selection of rooms, each designed for ultimate comfort and elegance</p>
+            </div>
+            
+            <div class="rooms-grid">
+                <!-- Room 1 -->
+                <div class="room-card">
+                    <div class="room-img room-1"></div>
+                    <div class="room-content">
+                        <div class="room-title">
+                            <h3>2 Bed Room</h3>
+                            <span class="room-price">₹1200</span>
+                        </div>
+                        <p>Spacious room with two comfortable beds, perfect for friends or small families.</p>
+                        <ul class="room-features">
+                            <li><i class="fas fa-bed"></i> 2 Premium Beds</li>
+                            <li><i class="fas fa-tv"></i> 55" Smart TV</li>
+                            <li><i class="fas fa-snowflake"></i> Climate Control</li>
+                        </ul>
+                        <a href="#" class="room-btn" data-room="2 Bed Room" data-price="1200">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Room 2 -->
+                <div class="room-card">
+                    <div class="room-img room-2"></div>
+                    <div class="room-content">
+                        <div class="room-title">
+                            <h3>3 Bed Room</h3>
+                            <span class="room-price">₹1500</span>
+                        </div>
+                        <p>Expansive room with three beds, ideal for groups or larger families.</p>
+                        <ul class="room-features">
+                            <li><i class="fas fa-bed"></i> 3 Premium Beds</li>
+                            <li><i class="fas fa-tv"></i> 55" Smart TV</li>
+                            <li><i class="fas fa-snowflake"></i> Climate Control</li>
+                        </ul>
+                        <a href="#" class="room-btn" data-room="3 Bed Room" data-price="1500">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Room 3 -->
+                <div class="room-card">
+                    <div class="room-img room-3"></div>
+                    <div class="room-content">
+                        <div class="room-title">
+                            <h3>4 Bed Room</h3>
+                            <span class="room-price">₹2000</span>
+                        </div>
+                        <p>Large luxury room with four beds, perfect for family gatherings.</p>
+                        <ul class="room-features">
+                            <li><i class="fas fa-bed"></i> 4 Premium Beds</li>
+                            <li><i class="fas fa-tv"></i> 65" Smart TV</li>
+                            <li><i class="fas fa-snowflake"></i> Climate Control</li>
+                        </ul>
+                        <a href="#" class="room-btn" data-room="4 Bed Room" data-price="2000">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Room 4 -->
+                <div class="room-card">
+                    <div class="room-img room-4"></div>
+                    <div class="room-content">
+                        <div class="room-title">
+                            <h3>5 Bed Room</h3>
+                            <span class="room-price">₹2500</span>
+                        </div>
+                        <p>Premium suite with five beds, designed for large groups and events.</p>
+                        <ul class="room-features">
+                            <li><i class="fas fa-bed"></i> 5 Premium Beds</li>
+                            <li><i class="fas fa-tv"></i> 65" Smart TV</li>
+                            <li><i class="fas fa-snowflake"></i> Climate Control</li>
+                        </ul>
+                        <a href="#" class="room-btn" data-room="5 Bed Room" data-price="2500">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Room 5 -->
+                <div class="room-card">
+                    <div class="room-img room-5"></div>
+                    <div class="room-content">
+                        <div class="room-title">
+                            <h3>2 Bed Attached</h3>
+                            <span class="room-price">₹1800</span>
+                        </div>
+                        <p>Luxurious room with two beds and private attached bathroom.</p>
+                        <ul class="room-features">
+                            <li><i class="fas fa-bed"></i> 2 Premium Beds</li>
+                            <li><i class="fas fa-bath"></i> Private Bathroom</li>
+                            <li><i class="fas fa-tv"></i> 55" Smart TV</li>
+                        </ul>
+                        <a href="#" class="room-btn" data-room="2 Bed Attached Room" data-price="1800">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Room 6 -->
+                <div class="room-card">
+                    <div class="room-img room-6"></div>
+                    <div class="room-content">
+                        <div class="room-title">
+                            <h3>3 Bed Attached</h3>
+                            <span class="room-price">₹2500</span>
+                        </div>
+                        <p>Ultimate luxury with three beds and premium attached bathroom.</p>
+                        <ul class="room-features">
+                            <li><i class="fas fa-bed"></i> 3 Premium Beds</li>
+                            <li><i class="fas fa-bath"></i> Luxury Bathroom</li>
+                            <li><i class="fas fa-tv"></i> 65" Smart TV</li>
+                        </ul>
+                        <a href="#" class="room-btn" data-room="3 Bed Attached Room" data-price="2500">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Premium Services</h2>
+                <p>Enjoy our exclusive amenities designed for your comfort and convenience</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <h3>Complimentary Tea</h3>
+                    <p>Premium selection of teas available 24/7 for your enjoyment</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h3>24/7 Warm Water</h3>
+                    <p>Continuous hot water supply for ultimate comfort</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fan"></i>
+                    </div>
+                    <h3>Geezer Facility</h3>
+                    <p>Instant hot water geezers in all attached bathrooms</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>High-Speed WiFi</h3>
+                    <p>Ultra-fast internet access throughout the property</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Integration -->
+    <section class="whatsapp-section">
+        <div class="container">
+            <div class="whatsapp-container">
+                <div class="whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>Instant WhatsApp Booking</h3>
+                <p>Book your luxury stay instantly via WhatsApp. Our dedicated team is available 24/7 to assist with reservations and provide personalized service for your needs.</p>
+                <a href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20book%20a%20luxury%20room%20at%20Elite%20Haven%20Lodge" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Book on WhatsApp
+                </a>
+                <p style="margin-top: 20px; font-size: 16px; color: #aaa;">Click above or send "BOOK" to +91 98765 43210</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Elite Haven Lodge</h3>
+                    <p style="color: #aaa;">Experience luxury redefined at our premium lodge, where every detail is crafted for exceptional comfort and unforgettable stays.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#rooms">Rooms & Suites</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Luxury Avenue, Mountain View District, Elite City 123456</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>reservations@elitehavenlodge.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Business Hours</h3>
+                    <ul class="footer-links">
+                        <li>Check-in: 2:00 PM</li>
+                        <li>Check-out: 12:00 PM</li>
+                        <li>24/7 Reception</li>
+                        <li>Open All Year</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Elite Haven Lodge. All Rights Reserved. | Crafted with <i class="fas fa-heart" style="color: var(--primary);"></i> for luxury travelers</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Book Your Luxury Stay</h3>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="roomType">Room Type</label>
+                    <input type="text" id="roomType" class="form-control" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price per Night</label>
+                    <input type="text" id="price" class="form-control" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" required placeholder="Enter your phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="checkin">Check-in Date</label>
+                    <input type="date" id="checkin" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="checkout">Check-out Date</label>
+                    <input type="date" id="checkout" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" class="form-control" required>
+                        <option value="">Select guests</option>
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5 Guests</option>
+                        <option value="6">6+ Guests</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> Proceed to WhatsApp Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced JavaScript with animations and interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links a');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                // Change icon based on menu state
+                const icon = this.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close mobile menu when clicking a link
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Update active nav link based on scroll position
+                updateActiveNavLink();
+            });
+            
+            // Update active navigation link
+            function updateActiveNavLink() {
+                const sections = document.querySelectorAll('section');
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('href') === `#${sectionId}`) {
+                                item.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // Booking Modal Functionality
+            const bookingModal = document.getElementById('bookingModal');
+            const openBookingModalBtn = document.getElementById('openBookingModal');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const roomButtons = document.querySelectorAll('.room-btn');
+            const roomTypeInput = document.getElementById('roomType');
+            const priceInput = document.getElementById('price');
+            const bookingForm = document.getElementById('bookingForm');
+            
+            // Open modal from header button
+            openBookingModalBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                bookingModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Open modal from room cards
+            roomButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const room = this.getAttribute('data-room');
+                    const price = this.getAttribute('data-price');
+                    
+                    roomTypeInput.value = room;
+                    priceInput.value = '₹' + price;
+                    
+                    bookingModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal
+            closeModalBtn.addEventListener('click', function() {
+                bookingModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === bookingModal) {
+                    bookingModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Form submission
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const roomType = roomTypeInput.value;
+                const price = priceInput.value;
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const checkin = document.getElementById('checkin').value;
+                const checkout = document.getElementById('checkout').value;
+                const guests = document.getElementById('guests').value;
+                
+                if (!roomType) {
+                    alert('Please select a room first from our luxury rooms section.');
+                    return;
+                }
+                
+                // Format dates
+                const checkinDate = new Date(checkin).toLocaleDateString('en-IN', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+                
+                const checkoutDate = new Date(checkout).toLocaleDateString('en-IN', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+                
+                // Create WhatsApp message
+                const message = `*Elite Haven Lodge - Booking Request*%0A%0A*Room Type:* ${roomType}%0A*Price:* ${price}/night%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Check-in:* ${checkinDate}%0A*Check-out:* ${checkoutDate}%0A*Guests:* ${guests}%0A%0APlease confirm availability and provide booking details.`;
+                
+                // WhatsApp number (replace with your actual number)
+                const whatsappNumber = '917852919235';
+                
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+                
+                // Close modal
+                bookingModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // Reset form
+                bookingForm.reset();
+                roomTypeInput.value = '';
+                priceInput.value = '';
+            });
+            
+            // Set min date for check-in to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('checkin').setAttribute('min', today);
+            
+            // Update checkout min date when checkin changes
+            document.getElementById('checkin').addEventListener('change', function() {
+                document.getElementById('checkout').setAttribute('min', this.value);
+            });
+            
+            // Add animation to room cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe room cards for animation
+            document.querySelectorAll('.room-card, .service-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
